@@ -5,14 +5,14 @@
   tasks:
     - name: Pull latest image
       docker_image:
-        name: source/webapp
+        name: linuxserver/syncthing:latest
         source: pull
       register: result
 
     - name: Recreate app container only if image changed
       docker_container:
-        name: app
-        image: source/webapp
+        name: syncthing
+        image: linuxserver/syncthing:latest
         state: started
         recreate: yes
       when: result.changed
