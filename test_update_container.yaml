@@ -1,0 +1,18 @@
+- name: Rolling update of app container
+  hosts: my_app_servers
+  become: true
+  serial: 1
+  tasks:
+    - name: Pull latest image
+      docker_image:
+        name: source/webapp
+        source: pull
+      register: result
+
+    - name: Recreate app container only if image changed
+      docker_container:
+        name: app
+        image: source/webapp
+        state: started
+        recreate: yes
+      when: result.changed
