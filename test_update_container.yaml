@@ -1,5 +1,5 @@
 - name: Rolling update of app container
-  hosts: my_app_servers
+  hosts: docker
   become: true
   serial: 1
   tasks:
