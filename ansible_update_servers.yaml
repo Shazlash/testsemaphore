@@ -1,6 +1,6 @@
 ---
 - name: Update Linux Servers
-  hosts: all
+  hosts: servers
   become: yes
   tasks:
     - name: Update all packages (Debian/Ubuntu)
